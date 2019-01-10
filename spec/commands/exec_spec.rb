@@ -553,11 +553,6 @@ RSpec.describe "bundle exec" do
       let(:executable) do
         ex = super()
         ex << "\n"
-        if LessThanProc.with(RUBY_VERSION).call("1.9")
-          # Ruby < 1.9 needs a flush for a exit by signal, later
-          # rubies do not
-          ex << "STDOUT.flush\n"
-        end
         ex << "raise SignalException, 'SIGTERM'\n"
         ex
       end
