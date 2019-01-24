@@ -53,7 +53,7 @@ module Spec
     end
 
     def bundle_update_requires_all?
-      Bundler::VERSION.start_with?("2.") ? nil : true
+      Bundler::VERSION.start_with?("3.") ? nil : true
     end
 
     def in_app_root(&blk)
