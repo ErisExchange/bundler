@@ -139,7 +139,11 @@ RSpec.describe "bundle exec" do
 
     bundle! "exec rackup"
 
-    expect(out).to eq("0.9.1")
+    expect(out).to include("0.9.1")
+    expect(err).to eq(
+      "Bundler is using a binstub that was created for a different gem (rack).\n" \
+      "You should run `bundle binstub rack_two` to work around a system/bundle conflict."
+    )
 
     Dir.chdir bundled_app2 do
       bundle! "exec rackup"
